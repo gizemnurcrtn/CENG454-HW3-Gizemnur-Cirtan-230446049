@@ -3,10 +3,10 @@ using System;
 
 public class CoreHealth : MonoBehaviour, IDamageable
 {
+    public static event Action<int> OnCoreDamaged;
+
     public int maxHealth = 100;
     private int currentHealth;
-
-    public static event Action<int> OnCoreDamaged;
 
     void Start()
     {
@@ -19,7 +19,6 @@ public class CoreHealth : MonoBehaviour, IDamageable
 
         Debug.Log("Core hasar aldı: " + damage);
 
-       
         OnCoreDamaged?.Invoke(currentHealth);
 
         if (currentHealth <= 0)
