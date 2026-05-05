@@ -4,21 +4,32 @@ public class EnemyMovement : MonoBehaviour
 {
     public Transform target;
     public float speed = 2f;
-    public float attackDistance = 1.2f;
+    public float attackDistance = 3f;
     public int damageAmount = 10;
 
     private bool hasDamaged = false;
+    private IMovementStrategy movementStrategy;
+
+    void Start()
+    {
+        movementStrategy = new DirectMovement();
+    }
 
     void Update()
     {
         if (target == null) return;
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            movementStrategy = new ZigZagMovement();
+            Debug.Log("Strategy switched to ZigZagMovement");
+        }
+
         float distance = Vector3.Distance(transform.position, target.position);
 
         if (distance > attackDistance)
         {
-            Vector3 dir = (target.position - transform.position).normalized;
-            transform.Translate(dir * speed * Time.deltaTime, Space.World);
+            movementStrategy.Move(transform, target, speed);
         }
         else if (!hasDamaged)
         {
@@ -32,17 +43,4 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-    void OnCollisionEnter(Collision other)
-{
-    if (other.gameObject.CompareTag("Core"))
-    {
-        IDamageable damageable = other.gameObject.GetComponent<IDamageable>();
-
-        if (damageable != null)
-        {
-            damageable.TakeDamage(10);
-            Debug.Log("Enemy hit core");
-        }
-    }
-}
 }
