@@ -39,6 +39,7 @@ public class EnemyMovement : MonoBehaviour
             {
                 damageable.TakeDamage(damageAmount);
                 Debug.Log("Enemy damaged the core");
+                Debug.Log("WIN: Enemy hit the core");
                 hasDamaged = true;
             }
         }
