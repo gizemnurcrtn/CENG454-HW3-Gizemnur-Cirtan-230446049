@@ -19,15 +19,19 @@ public class ProjectilePool : MonoBehaviour
     }
 
     public Projectile GetProjectile()
+{
+    if (availableProjectiles.Count == 0)
     {
-        if (availableProjectiles.Count == 0)
-        {
-            return null;
-        }
-
-        Projectile projectile = availableProjectiles.Dequeue();
-        return projectile;
+        Debug.Log("Pool empty!");
+        return null;
     }
+
+    Projectile projectile = availableProjectiles.Dequeue();
+
+    Debug.Log("Projectile reused from pool. Remaining: " + availableProjectiles.Count);
+
+    return projectile;
+}
 
     public void ReturnProjectile(Projectile projectile)
     {
