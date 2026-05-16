@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class EnemyMovement : MonoBehaviour
     public float attackDistance = 4f;
     public int damageAmount = 25;
     public float attackCooldown = 1f;
+    public TMP_Text gameStateText;
 
     private float attackTimer = 0f;
     private IMovementStrategy movementStrategy;
@@ -23,8 +25,14 @@ public class EnemyMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             movementStrategy = new ZigZagMovement();
+
             Debug.Log("Strategy switched to ZigZagMovement");
+
+        if (gameStateText != null)
+        {
+        gameStateText.text = "ZIGZAG STRATEGY";
         }
+}   
 
         float distance = Vector3.Distance(transform.position, target.position);
 

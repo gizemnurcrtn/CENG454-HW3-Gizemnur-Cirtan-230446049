@@ -1,10 +1,12 @@
 using UnityEngine;
+using TMPro;
 
 public class ProjectileShooter : MonoBehaviour
 {
     public ProjectilePool projectilePool;
     public Transform shootPoint;
     public Transform shootTarget;
+    public TMP_Text gameStateText;
 
     void Update()
     {
@@ -22,6 +24,10 @@ public class ProjectileShooter : MonoBehaviour
         {
             projectileData = new FireDecorator(projectileData);
             Debug.Log("Fire decorator applied!");
+        }
+        if (gameStateText != null)
+        {
+            gameStateText.text = "FIRE SHOT ACTIVATED";
         }
 
         int damage = projectileData.GetDamage();
