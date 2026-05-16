@@ -3,11 +3,12 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     public Transform target;
-    public float speed = 2f;
-    public float attackDistance = 3f;
-    public int damageAmount = 10;
+    public float speed = 1.5f;
+    public float attackDistance = 4f;
+    public int damageAmount = 25;
+    public float attackCooldown = 1f;
 
-    private bool hasDamaged = false;
+    private float attackTimer = 0f;
     private IMovementStrategy movementStrategy;
 
     void Start()
@@ -31,16 +32,25 @@ public class EnemyMovement : MonoBehaviour
         {
             movementStrategy.Move(transform, target, speed);
         }
-        else if (!hasDamaged)
+        else
         {
-            IDamageable damageable = target.GetComponent<IDamageable>();
+            attackTimer -= Time.deltaTime;
 
-            if (damageable != null)
+            if (attackTimer <= 0f)
             {
-                damageable.TakeDamage(damageAmount);
-                Debug.Log("Enemy damaged the core");
-                Debug.Log("WIN: Enemy hit the core");
-                hasDamaged = true;
+                IDamageable damageable = target.GetComponentInChildren<IDamageable>();
+
+                if (damageable != null)
+                {
+                    damageable.TakeDamage(damageAmount);
+                    Debug.Log("Enemy damaged the core");
+                }
+                else
+                {
+                    Debug.Log("No IDamageable found on Core or children");
+                }
+
+                attackTimer = attackCooldown;
             }
         }
     }

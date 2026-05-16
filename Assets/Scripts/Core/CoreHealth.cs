@@ -17,12 +17,24 @@ public class CoreHealth : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
 
-        Debug.Log("Core hasar aldı: " + damage);
+        Debug.Log("Core took damage: " + damage);
+
+        if (currentHealth < 0)
+        {
+            currentHealth = 0;
+        }
 
         OnCoreDamaged?.Invoke(currentHealth);
 
         if (currentHealth <= 0)
         {
+            GameStateUI ui = FindFirstObjectByType<GameStateUI>();
+
+            if (ui != null)
+            {
+                ui.ShowLose();
+            }
+
             Debug.Log("GAME OVER");
         }
     }

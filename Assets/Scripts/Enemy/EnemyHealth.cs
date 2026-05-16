@@ -12,7 +12,16 @@ public class EnemyHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            Debug.Log("Enemy destroyed!");
+
+            GameStateUI ui = FindFirstObjectByType<GameStateUI>();
+
+            if (ui != null)
+            {
+                ui.ShowWin();
+            }
+
+            Destroy(gameObject);
         }
     }
 
