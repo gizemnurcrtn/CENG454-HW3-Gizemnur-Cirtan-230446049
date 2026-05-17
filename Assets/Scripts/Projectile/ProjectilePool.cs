@@ -33,9 +33,12 @@ public class ProjectilePool : MonoBehaviour
     return projectile;
 }
 
-    public void ReturnProjectile(Projectile projectile)
-    {
-        projectile.gameObject.SetActive(false);
-        availableProjectiles.Enqueue(projectile);
-    }
+  public void ReturnProjectile(Projectile projectile)
+{
+    projectile.gameObject.SetActive(false);
+
+    Debug.Log("Projectile returned to pool");
+
+    availableProjectiles.Enqueue(projectile);
+}
 }
