@@ -378,8 +378,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.06404884, y: 0.68635017, z: -0.060906373, w: -0.7218807}
-  m_LocalPosition: {x: 28.661428, y: 3.1631062, z: 13.38771}
+  m_LocalRotation: {x: -0.07434519, y: 0.710634, z: -0.07597396, w: -0.69548553}
+  m_LocalPosition: {x: 28.166203, y: 3.0812817, z: 13.559843}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1786,7 +1786,7 @@ MonoBehaviour:
   target: {fileID: 394012472}
   speed: 1.5
   attackDistance: 4
-  damageAmount: 25
+  damageAmount: 20
   attackCooldown: 1
   gameStateText: {fileID: 1939145188}
 --- !u!54 &1460576204
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'WASD: Move | F: Shoot | Shift+F: Fire Shot | Space: Switch Strategy'
+  m_text: 'WASD : Move | F : Shoot | Shift+F : Fire Shot | Space : Switch Strategy'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
